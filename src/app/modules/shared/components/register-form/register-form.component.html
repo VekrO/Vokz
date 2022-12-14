@@ -1,0 +1,26 @@
+<app-navbar [setLoginButton]="true"></app-navbar>
+<form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-card class="card">
+            <mat-card-title>
+                Registre-se
+            </mat-card-title>
+            <mat-form-field appearance="fill">
+                <mat-label class="label">Usuário</mat-label>
+                <input type="text" matInput formControlName="username">
+                <mat-error class="error">Preencha o usuário corretamente!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label class="label">E-mail</mat-label>
+                <input type="email" matInput formControlName="email">
+                <mat-error class="error">Preencha o e-mail corretamente!</mat-error>
+                <mat-error class="error" *ngIf="form.controls['email'].hasError('email')">O e-mail digitado não é válido!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label class="label">Senha</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error class="error">Preencha a senha corretamente!</mat-error>
+                <mat-error class="error" *ngIf="form.controls['password'].hasError('minlength')">A senha deve conter pelo menos 8 caracteres.</mat-error>
+            </mat-form-field>
+            <button mat-raised-button type="submit" color="primary">Confirmar</button>
+    </mat-card>
+</form>

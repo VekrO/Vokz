@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<app-sidenav></app-sidenav>
+<main class="container">
+
+    <mat-card>
+        <mat-card-title>Novo produto</mat-card-title>
+        <mat-card-subtitle>Insira as informações do produto</mat-card-subtitle>
+
+        <mat-card-content>
+
+            <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Nome do produto</mat-label>
+                    <input matInput type="text" formControlName="name">
+                    <mat-hint>Ex. Refrigerante de Limão</mat-hint>
+                    <mat-error>Preencha o nome do produto corretamente!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput type="text" style="resize: none;" formControlName="description"></textarea>
+                    <mat-hint>Ex. O produto X tem esse tamanho e essa largura.</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Preço do produto</mat-label>
+                    <input matInput type="number" formControlName="price" min="0" placeholder="0">
+                    <mat-hint>Ex. 2.99</mat-hint>
+                    <mat-error>Insira o preço do produto corretamente!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Quantidade</mat-label>
+                    <input matInput type="number" formControlName="quantity" min="1" placeholder="0">
+                    <mat-hint>Ex. 125</mat-hint>
+                    <mat-error>Insira a quantidade de produto corretamente!</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Confirmar</button>
+                <button mat-raised-button color="warn" type="reset">Resetar</button>
+
+            </form>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</main>

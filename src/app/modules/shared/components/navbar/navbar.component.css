@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.header .navbar-brand{
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.header .nav {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}

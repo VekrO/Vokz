@@ -1,0 +1,21 @@
+<app-navbar [setLoginButton]="true" [setRegisterButton]="true"></app-navbar>
+<app-sidenav></app-sidenav>
+<main class="container">
+    
+    <mat-card class="card">
+
+        <mat-selection-list class="list" #lista >
+            <div mat-subheader>Produtos</div>
+            <mat-list-option class="list-option" [value]="product" *ngFor="let product of products">
+                {{ product.name }}
+            </mat-list-option>
+        </mat-selection-list>
+
+        <br>
+
+        <button *ngIf="lista.selectedOptions.selected.length >= 1" mat-raised-button color="warn" (click)="deleteProduct(lista.selectedOptions.selected)"><mat-icon>delete</mat-icon></button>
+        <button style="margin-left: 5px;" *ngIf="lista.selectedOptions.selected.length == 1" mat-raised-button color="primary" (click)="openForm(lista.selectedOptions.selected[0].value)"><mat-icon>edit</mat-icon></button>
+
+    </mat-card>
+
+</main>

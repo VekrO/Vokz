@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="header">
+
+    <a class="navbar-brand" [routerLink]="['/']" >Vokz</a>
+
+    <ul class="nav">
+        <li *ngIf="setLoginButton" class="nav-item">
+            <a [routerLink]="['/login']"  mat-raised-button>Login</a>
+        </li>
+        <li *ngIf="setRegisterButton" class="nav-item">
+            <a [routerLink]="['/register']"  mat-raised-button>Criar uma conta</a>
+        </li>
+        <li *ngIf="setLogoutButton" class="nav-item">
+            <a (click)="logout()" mat-raised-button>Sair</a>
+        </li>
+    </ul>
+
+</mat-toolbar>

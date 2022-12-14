@@ -1,0 +1,13 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav" fixedTopGap="64" fixedInViewport="true" opened="true">
+        <mat-toolbar class="sidenav-title">Menu</mat-toolbar>
+        <mat-nav-list class="sidenav-list">
+            <a [routerLink]="['/']" class="sidenav-item"  mat-list-item>
+                Produtos
+            </a>
+            <a [routerLink]="['/create']" class="sidenav-item" mat-list-item>
+                Criar Produto
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+</mat-sidenav-container>
