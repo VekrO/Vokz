@@ -17,7 +17,7 @@ export class LoginFormComponent {
 
   constructor(private auth: AuthService, private router: Router, private notify: ToastrService) {
     this.form = new FormGroup({
-      'username': new FormControl('', [Validators.required]),
+      'email': new FormControl('', [Validators.required]),
       'password': new FormControl('', [Validators.required, Validators.minLength(8)])
     })
   }

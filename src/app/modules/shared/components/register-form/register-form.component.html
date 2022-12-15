@@ -1,26 +1,79 @@
 <app-navbar [setLoginButton]="true"></app-navbar>
-<form [formGroup]="form" (ngSubmit)="submit()">
-        <mat-card class="card">
-            <mat-card-title>
-                Registre-se
-            </mat-card-title>
-            <mat-form-field appearance="fill">
-                <mat-label class="label">Usuário</mat-label>
-                <input type="text" matInput formControlName="username">
-                <mat-error class="error">Preencha o usuário corretamente!</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label class="label">E-mail</mat-label>
-                <input type="email" matInput formControlName="email">
-                <mat-error class="error">Preencha o e-mail corretamente!</mat-error>
-                <mat-error class="error" *ngIf="form.controls['email'].hasError('email')">O e-mail digitado não é válido!</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label class="label">Senha</mat-label>
-                <input type="password" matInput formControlName="password">
-                <mat-error class="error">Preencha a senha corretamente!</mat-error>
-                <mat-error class="error" *ngIf="form.controls['password'].hasError('minlength')">A senha deve conter pelo menos 8 caracteres.</mat-error>
-            </mat-form-field>
-            <button mat-raised-button type="submit" color="primary">Confirmar</button>
-    </mat-card>
-</form>
+
+
+<mat-card class="card">
+    <mat-card-title>
+        Formulário de cadastro
+    </mat-card-title>
+    <mat-card-content>
+        <mat-stepper #stepper linear>
+            <mat-step [stepControl]="firstForm">
+                <form [formGroup]="firstForm">
+                    <ng-template matStepLabel>Informações</ng-template>  
+                    <div class="form-group">
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>Primeiro nome</mat-label>
+                            <input type="text" formControlName="first_name" matInput required>
+                            <mat-error>Preencha o campo corretamente!</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>Último nome</mat-label>
+                            <input type="text" formControlName="last_name" matInput required>
+                            <mat-error>Preencha o campo corretamente!</mat-error>
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button color="primary" matStepperNext>Prosseguir</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondForm">
+                <form [formGroup]="secondForm">
+                    <ng-template matStepLabel>Dados pessoais</ng-template>
+                    <div class="form-group">
+
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>E-mail</mat-label>
+                            <input type="email" matInput formControlName="email">
+                            <mat-error *ngIf="secondForm.errors?.['exists']">O e-mail está em uso!</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>Telefone</mat-label>
+                            <input type="tel" matInput formControlName="telephone" (input)="handleTelephone($event)" maxlength="15">
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>Senha</mat-label>
+                            <input type="password" formControlName="password" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field" appearance="fill">
+                            <mat-label>Confirme a senha</mat-label>
+                            <input type="password" formControlName="passwordConfirm" matInput>
+                            <mat-error *ngIf="secondForm.errors?.['mismatch']">As senhas não coincidem!</mat-error>
+                        </mat-form-field>
+
+                        <p><mat-checkbox #showOption (click)="resetCpfRg()" >Não sou do Brasil</mat-checkbox></p>
+                        
+                        <mat-form-field class="form-field" appearance="fill" *ngIf="!showOption.checked">
+                            <mat-label>CPF</mat-label>
+                            <input type="text" matInput formControlName="cpf" (input)="handleCpf()" maxlength="14">
+                        </mat-form-field>
+    
+                        <mat-form-field class="form-field" appearance="fill" *ngIf="!showOption.checked">
+                            <mat-label>RG</mat-label>
+                            <input type="text" formControlName="rg" maxlength="7" matInput>
+                            <mat-hint>Não é necessário digitar o 0.</mat-hint>
+                        </mat-form-field>
+
+                        <div>
+                            <button mat-raised-button color="primary" (click)="submit()" >Confirmar</button>
+                        </div>
+
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+    </mat-card-content>
+</mat-card>

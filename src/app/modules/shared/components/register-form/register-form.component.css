@@ -1,32 +1,22 @@
-form{
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 15px;
+    max-width: 50%;
+}
+form {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
-    height: calc(100vh - 64px);
+    padding-top: 5px;
 }
-
-form .card {
-    width: 500px;
+.form-group{
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    gap: 35px;
+    width: 500px;
 }
-
-form .card .label {
-    font-size: 18px;
-}
-
-form .card .error {
-    font-size: 18px;
-}
-
-form .card input {
-    font-size: 22px;
-}
-
-@media (max-width: 500px){
-    form .card {
-        width: 95%;
-    }
+.form-field{
+    margin-bottom: 15px;
 }
