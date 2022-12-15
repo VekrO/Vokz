@@ -13,8 +13,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,7 +45,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule,
+    MatStepperModule,
+    MatCheckboxModule,
     ToastrModule.forRoot()
   ],
   exports:[
@@ -59,9 +61,11 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     SidenavComponent,
     MatIconModule,
     NavbarComponent,
+    MatStepperModule,
     MatDialogModule,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

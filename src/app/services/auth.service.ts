@@ -17,9 +17,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  register(params: FormGroup): Observable<Register>{
+  register(params: object): Observable<Register>{
     console.log(params);
-    return this.http.post<Register>(`${environment.registerAPI}`, params.value)
+    return this.http.post<Register>(`${environment.registerAPI}`, params)
   }
 
   login(params: FormGroup): Observable<any>{
