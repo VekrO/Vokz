@@ -35,6 +35,7 @@
                         <mat-form-field class="form-field" appearance="fill">
                             <mat-label>E-mail</mat-label>
                             <input type="email" matInput formControlName="email">
+                            <mat-error *ngIf="secondForm.errors?.['exists']">O e-mail está em uso!</mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="form-field" appearance="fill">
@@ -52,7 +53,6 @@
                             <input type="password" formControlName="passwordConfirm" matInput>
                             <mat-error *ngIf="secondForm.errors?.['mismatch']">As senhas não coincidem!</mat-error>
                         </mat-form-field>
-
 
                         <p><mat-checkbox #showOption (click)="resetCpfRg()" >Não sou do Brasil</mat-checkbox></p>
                         

@@ -42,9 +42,6 @@ export class RegisterFormComponent {
 
   submit(): void {
 
-    console.log(this.secondForm.controls['passwordConfirm'].hasError('mismatch'));
-    
-
     let params = {
       first_name: this.firstForm.get('first_name')?.value,
       last_name: this.firstForm.get('last_name')?.value,
@@ -56,6 +53,12 @@ export class RegisterFormComponent {
     }
     
     let obs$ = this.auth.register(params).subscribe({
+      error: (err)=>{
+        if(err.error.body.email){
+          this.notify.error('O e-mail digitado está em uso!')
+          this.secondForm.controls['email'].setErrors({exists: true})
+        }
+      },
       complete: ()=>{
         obs$.unsubscribe();
         this.notify.success('Registro efetuado com sucesso! Faça login.')
