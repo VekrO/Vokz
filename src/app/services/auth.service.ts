@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { environment } from './../../environments/environment';
+import { environment } from './../../environments/environment.prod';
 import { Register } from './../interfaces/register';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,11 +19,11 @@ export class AuthService {
 
   register(params: object): Observable<Register>{
     console.log(params);
-    return this.http.post<Register>(`${environment.registerAPI}`, params)
+    return this.http.post<Register>(`${environment.baseUrl}/user/register/`, params)
   }
 
   login(params: FormGroup): Observable<any>{
-    return this.http.post<any>(`${environment.loginAPI}`, params.value, {
+    return this.http.post<any>(`${environment.baseUrl}/user/login/`, params.value, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   tokenCheck(): Observable<any> {
-    return this.http.post<any>(`http://localhost:8000/user/token/check/`, {'token': localStorage.getItem('token')}, {
+    return this.http.post<any>(`${environment.baseUrl}/user/token/check/`, {'token': localStorage.getItem('token')}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
